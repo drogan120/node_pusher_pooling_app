@@ -10,9 +10,7 @@ let pusher = new Pusher({
   encrypted: process.env.PUSHER_ENCRYPTED || true,
 });
 
-router.get("/", (req, res) => {
-  res.send({ message: "pool oke" });
-});
+router.get("/", (req, res) => {});
 
 router.post("/", (req, res) => {
   pusher.trigger("os-poll", "os-vote", {
