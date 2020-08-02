@@ -21,7 +21,7 @@ let dataPoints = [
     y: 0,
   },
   {
-    label: "MacOs",
+    label: "MacOS",
     y: 0,
   },
   {
@@ -50,4 +50,21 @@ if (chartContainer) {
     ],
   });
   chart.render();
+  Pusher.logToConsole = true;
+  let pusher = new Pusher("329e4eef68ec43e0a724", {
+    cluster: "ap1",
+  });
+
+  let channel = pusher.subscribe("os-poll");
+  channel.bind("os-vote", function (data) {
+    dataPoints = dataPoints.map((x) => {
+      if (x.label == data.os) {
+        x.y += data.point;
+        return x;
+      } else {
+        return x;
+      }
+    });
+    chart.render();
+  });
 }
