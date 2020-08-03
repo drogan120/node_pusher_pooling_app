@@ -3,7 +3,11 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotENV = require("dotenv");
+
 dotENV.config();
+
+// db config
+require("./app/config/db");
 
 const app = express();
 const poll = require("./app/routes/poll");
