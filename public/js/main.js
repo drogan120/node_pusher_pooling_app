@@ -73,7 +73,7 @@ fetch("http://127.0.0.1:8000/poll")
       channel.bind("os-vote", function (data) {
         dataPoints = dataPoints.map((x) => {
           if (x.label == data.os) {
-            x.y += data.point;
+            x.y += data.points;
             return x;
           } else {
             return x;
